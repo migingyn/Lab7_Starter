@@ -7,6 +7,11 @@ Automated tests should fit in a Github Action that runs whenever code is pushed 
 ## 2.
 No, you'd use a unit test in that case. 
 
+## 3.
+Navigation mode is used for checking performance metrics by reloading the page and auditting, whereas Snapshot mode takes the current state of the page without reloading and audits that and tracks the interactions of the page for any accessibility issues.
+
+
+
 
 
 
