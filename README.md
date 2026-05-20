@@ -12,8 +12,3 @@ Navigation mode is used for checking performance metrics by reloading the page a
 
 ## 4.
 There's no lang attribute so the page is set up to the language that the user of a screen reader has, so for a Spanish user, they would hear English words pronounced with Spanish phonetics. Also, there's no meta description which could look unprofessional when shared and can help with summaries on search engines when people search it up. Lastly, the current latency is fine for performance, it is recommended to reduce the critical chain depth to increase performance rather than waiting for each layer to render by deferring non-essential JS like script tags so that they don't block parsing and can execute after the HTML parses.
-
-
-
-
-
