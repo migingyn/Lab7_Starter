@@ -154,7 +154,7 @@ describe('Basic user flow for Website', () => {
 
   // Checking to make sure that if you remove all of the items from the cart that the cart
   // number in the top right of the screen is 0
-  it.skip('Checking number of items in cart on screen after removing from cart', async () => {
+  it('Checking number of items in cart on screen after removing from cart', async () => {
     console.log('Checking number of items in cart on screen...');
 
     /**
@@ -163,6 +163,16 @@ describe('Basic user flow for Website', () => {
      * Once you have, check to make sure that #cart-count is now 0
      * Remember to remove the .skip from this it once you are finished writing this test.
      */
+    const productItems = await page.$$('product-item');
+    for (let i = 0; i < productItems.length; i++) {
+      const shadowRoot = await productItems[i].evaluate((el) => el.shadowRoot);
+      const button = await shadowRoot.$('button');
+      await button.click();
+    }
+
+    const cartCount = await page.$('#cart-count');
+    const cartCountText = await cartCount.evaluate((el) => el.innerText);
+    expect(cartCountText).toBe('0');
 
   }, 10000);
 
