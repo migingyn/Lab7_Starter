@@ -90,7 +90,7 @@ describe('Basic user flow for Website', () => {
 
   // Check to make sure that after clicking "Add to Cart" on every <product-item> that the Cart
   // number in the top right has been correctly updated
-  it.skip('Checking number of items in cart on screen', async () => {
+  it('Checking number of items in cart on screen', async () => {
     console.log('Checking number of items in cart on screen...');
 
     /**
@@ -100,6 +100,16 @@ describe('Basic user flow for Website', () => {
      * Check to see if the innerText of #cart-count is 20
      * Remember to remove the .skip from this it once you are finished writing this test.
      */
+    const productItems = await page.$$('product-item');
+    for (let i = 0; i < productItems.length; i++) {
+      const shadowRoot = await productItems[i].evaluate((el) => el.shadowRoot);
+      const button = await shadowRoot.$('button');
+      await button.click();
+    }
+
+    const cartCount = await page.$('#cart-count');
+    const cartCountText = await cartCount.evaluate((el) => el.innerText);
+    expect(cartCountText).toBe('20');
 
   }, 10000);
 
